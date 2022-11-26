@@ -21,3 +21,4 @@ DATA=${DATA//./$DOT}
 echo $PREPROCESS > main
 echo $DATA >> main
 echo $POSTPROCESS >> main
+echo "convert success"
