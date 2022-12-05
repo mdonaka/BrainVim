@@ -12,13 +12,16 @@ DOT=`read BrainCommand/dot`
 LEFT_ANGLE=`read BrainCommand/left_angle`
 RIGHT_ANGLE=`read BrainCommand/right_angle`
 
-DATA=`cat main.bf`
+DATA=`cat main2.bf`
 DATA=${DATA%.}
 DATA=${DATA//+/$PLUS}
+DATA=${DATA//+/hoge}
 DATA=${DATA//-/$MINUS}
 DATA=${DATA//./$DOT}
+DATA=${DATA//</$LEFT_ANGLE}
+DATA=${DATA//>/$RIGHT_ANGLE}
 
-echo $PREPROCESS > main
-echo $DATA >> main
-echo $POSTPROCESS >> main
+echo $PREPROCESS > main.vim
+echo $DATA >> main.vim
+echo $POSTPROCESS >> main.vim
 echo "convert success"
