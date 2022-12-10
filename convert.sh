@@ -20,15 +20,15 @@ read (){
 
 FILE=$1
 
-PREPROCESS=`read BrainCommand/preprocess`
-POSTPROCESS=`read BrainCommand/postprocess`
-PLUS=`read BrainCommand/plus`
-MINUS=`read BrainCommand/minus`
-DOT=`read BrainCommand/dot`
-LEFT_ANGLE=`read BrainCommand/left_angle`
-RIGHT_ANGLE=`read BrainCommand/right_angle`
-LEFT_SQUARE=`read BrainCommand/left_square`
-RIGHT_SQUARE=`read BrainCommand/right_square`
+PREPROCESS=`read brain_command/preprocess`
+POSTPROCESS=`read brain_command/postprocess`
+PLUS=`read brain_command/plus`
+MINUS=`read brain_command/minus`
+DOT=`read brain_command/dot`
+LEFT_ANGLE=`read brain_command/left_angle`
+RIGHT_ANGLE=`read brain_command/right_angle`
+LEFT_SQUARE=`read brain_command/left_square`
+RIGHT_SQUARE=`read brain_command/right_square`
 
 DATA=`cat $FILE`
 DATA=${DATA%.}
