@@ -20,6 +20,14 @@ read (){
 
 FILE=$1
 
+MACRO_PRE=`read brain_command/macros/preprocess`
+MACRO_A=`read brain_command/macros/a`
+MACRO_X=`read brain_command/macros/x`
+MACRO_S=`read brain_command/macros/s`
+MACRO_L=`read brain_command/macros/l`
+MACRO_R=`read brain_command/macros/r`
+MACRO_D=`read brain_command/macros/d`
+
 PREPROCESS=`read brain_command/preprocess`
 POSTPROCESS=`read brain_command/postprocess`
 PLUS=`read brain_command/plus`
@@ -31,7 +39,6 @@ LEFT_SQUARE=`read brain_command/left_square`
 RIGHT_SQUARE=`read brain_command/right_square`
 
 DATA=`cat $FILE`
-DATA=${DATA%.}
 DATA=${DATA//+/$PLUS}
 DATA=${DATA//+/hoge}
 DATA=${DATA//-/$MINUS}
@@ -41,7 +48,8 @@ DATA=${DATA//>/$RIGHT_ANGLE}
 DATA=${DATA//[/$LEFT_SQUARE}
 DATA=${DATA//]/$RIGHT_SQUARE}
 
-echo $PREPROCESS > command.vim
+echo $MACRO_PRE$MACRO_A$MACRO_X$MACRO_S$MACRO_L$MACRO_R$MACRO_D > command.vim
+echo $PREPROCESS >> command.vim
 echo $DATA >> command.vim
 echo $POSTPROCESS >> command.vim
 echo "convert success"
