@@ -6,6 +6,7 @@ Usage:
 
 Options:
     -c       Compile mode
+    -n       Not convert mode
 EOF
 }
 
@@ -17,13 +18,17 @@ fi
 
 FILE=${@:$#:1}
 cat $FILE > tmp
+CONVERT=true
 
-while getopts c OPT; do
+while getopts cn OPT; do
     case $OPT in
     c)
         cd transpile
         cargo run ../${FILE} ../in > ../tmp || (usage && exit 1)
         cd ../
+        ;;
+    n)
+      CONVERT=false
         ;;
     \?)
         usage && exit 1
@@ -32,7 +37,9 @@ while getopts c OPT; do
 done
 
 # barinfuckをvimコマンドに変換
-./convert.sh tmp
+if "${CONVERT}"; then
+    ./convert.sh tmp
+fi
 rm tmp
 
 # Vimコマンドを実行
