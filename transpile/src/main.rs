@@ -1,3 +1,4 @@
+use std::env;
 use std::fs;
 
 fn cor_array(code: &String) -> Vec<usize> {
@@ -27,8 +28,14 @@ fn cor_array(code: &String) -> Vec<usize> {
 fn main() {
     let memory_size = 10;
 
-    let code = fs::read_to_string("../main.bf").unwrap();
-    let input = fs::read_to_string("../in").unwrap();
+    let args: Vec<String> = env::args().collect();
+    if args.len() < 3 {
+        println!("[ERROR] Missing command line arguments.");
+        println!("Usage: cargo run [brainfuck code] [input file]");
+        return;
+    }
+    let code = fs::read_to_string(args.get(1).unwrap()).unwrap();
+    let input = fs::read_to_string(args.get(2).unwrap()).unwrap();
 
     let size = code.len();
 
