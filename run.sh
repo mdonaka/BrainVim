@@ -2,18 +2,38 @@ function usage {
     cat <<EOF
 $(basename ${0})
 Usage:
-    $(basename ${0}) [brainfuck file]
+    $(basename ${0}) [-c] <brainfuck file>
+
+Options:
+    -c       Compile mode
 EOF
 }
-if [ $# != 1 ]; then
+
+if [ $# = 0 ]; then
     echo "Argument not found error."
     usage
     exit 1
 fi
 
+FILE=${@:$#:1}
+cat $FILE > tmp
+
+while getopts c OPT; do
+    case $OPT in
+    c)
+        cd transpile
+        cargo run ../${FILE} ../in > ../tmp || usage && exit 1
+        cd ../
+        ;;
+    \?)
+        usage && exit 1
+        ;;
+    esac
+done
+
 # barinfuckをvimコマンドに変換
-FILE=$1
-./convert.sh $FILE
+./convert.sh tmp
+rm tmp
 
 # Vimコマンドを実行
 cat in > out

@@ -32,7 +32,7 @@ fn main() {
     if args.len() < 3 {
         println!("[ERROR] Missing command line arguments.");
         println!("Usage: cargo run [brainfuck code] [input file]");
-        return;
+        panic!();
     }
     let code = fs::read_to_string(args.get(1).unwrap()).unwrap();
     let input = fs::read_to_string(args.get(2).unwrap()).unwrap();
