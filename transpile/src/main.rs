@@ -42,7 +42,7 @@ fn main() {
     let mut input_index = 0;
 
     let mut pointer = 0;
-    let mut array = vec![0; memory_size];
+    let mut array: Vec<i32> = vec![0; memory_size];
 
     let cor = cor_array(&code);
     let mut limit = 3000000;
@@ -51,14 +51,26 @@ fn main() {
         let c = code.chars().nth(code_index).unwrap();
 
         match c {
-            '>' => pointer += 1,
-            '<' => pointer -= 1,
+            '>' => {
+                pointer = if pointer == memory_size - 1 {
+                    0
+                } else {
+                    pointer + 1
+                }
+            }
+            '<' => {
+                pointer = if pointer == 0 {
+                    memory_size - 1
+                } else {
+                    pointer - 1
+                }
+            }
             '+' => array[pointer] += 1,
             '-' => array[pointer] -= 1,
             '.' => {}
             ',' => {
                 let x = input.chars().nth(input_index).unwrap();
-                array[pointer] = x.to_digit(10).unwrap();
+                array[pointer] = x.to_digit(10).unwrap() as i32;
                 input_index += 1;
             }
             '[' if array[pointer] == 0 => code_index = cor[code_index] - 1,

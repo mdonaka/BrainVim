@@ -40,7 +40,7 @@ done
 if "${CONVERT}"; then
     ./convert.sh tmp
 fi
-rm tmp
+# rm tmp
 
 # Vimコマンドを実行
 cat in > out
