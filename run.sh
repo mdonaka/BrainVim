@@ -24,7 +24,7 @@ while getopts cn OPT; do
     case $OPT in
     c)
         cd transpile
-        cargo run ../${FILE} ../in > ../tmp || (usage && exit 1)
+        cargo run ../${FILE} ../in > ../tmp || exit 1
         cd ../
         ;;
     n)

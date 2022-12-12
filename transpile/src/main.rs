@@ -26,13 +26,11 @@ fn cor_array(code: &String) -> Vec<usize> {
 }
 
 fn main() {
-    let memory_size = 10;
+    let memory_size = 30000;
 
     let args: Vec<String> = env::args().collect();
     if args.len() < 3 {
-        println!("[ERROR] Missing command line arguments.");
-        println!("Usage: cargo run [brainfuck code] [input file]");
-        panic!();
+        panic!( "[ERROR] Missing command line arguments.\nUsage: cargo run [brainfuck code] [input file];");
     }
     let code = fs::read_to_string(args.get(1).unwrap()).unwrap();
     let input = fs::read_to_string(args.get(2).unwrap()).unwrap();
@@ -47,7 +45,7 @@ fn main() {
     let mut array = vec![0; memory_size];
 
     let cor = cor_array(&code);
-    let mut limit = 30000;
+    let mut limit = 3000000;
 
     while code_index < size {
         let c = code.chars().nth(code_index).unwrap();
@@ -74,8 +72,7 @@ fn main() {
 
         limit -= 1;
         if limit < 0 {
-            println!("ERROR! reach limit size");
-            break;
+            panic!("ERROR! reach limit size");
         }
     }
     println!("{}", trans);
