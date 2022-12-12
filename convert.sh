@@ -29,11 +29,13 @@ MACRO_L=`read brain_command/macros/l`
 MACRO_R=`read brain_command/macros/r`
 MACRO_D=`read brain_command/macros/d`
 MACRO_F=`read brain_command/macros/f`
+MACRO_T=`read brain_command/macros/t`
 MACRO_G=`read brain_command/macros/g`
 MACRO_H=`read brain_command/macros/h`
 MACRO_M=`read brain_command/macros/m`
 MACRO_B=`read brain_command/macros/b`
 MACRO_V=`read brain_command/macros/v`
+MACRO_P=`read brain_command/macros/p`
 
 PREPROCESS=`read brain_command/preprocess`
 POSTPROCESS=`read brain_command/postprocess`
@@ -55,7 +57,7 @@ DATA=${DATA//>/$RIGHT_ANGLE}
 DATA=${DATA//[/$LEFT_SQUARE}
 DATA=${DATA//]/$RIGHT_SQUARE}
 
-echo $MACRO_PRE$MACRO_A$MACRO_E$MACRO_X$MACRO_S$MACRO_L$MACRO_R$MACRO_D$MACRO_F$MACRO_G$MACRO_H$MACRO_M$MACRO_V$MACRO_B > command.vim
+echo $MACRO_PRE$MACRO_A$MACRO_E$MACRO_X$MACRO_S$MACRO_L$MACRO_R$MACRO_D$MACRO_F$MACRO_T$MACRO_G$MACRO_H$MACRO_M$MACRO_V$MACRO_B$MACRO_P > command.vim
 echo $PREPROCESS >> command.vim
 echo $DATA >> command.vim
 echo $POSTPROCESS >> command.vim
